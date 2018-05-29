@@ -73,7 +73,11 @@ int main( void ){
       lastTimeSpan = result.timeSpan;
       sameResult = 0;
     }
-
+	
+	if( clock() > 5 * 60 * 1000 + beginTime ){
+		break;
+	}
+	
     //printf( "makeSpan:%d\n", result.timeSpan );
 
     freeResult( result );
