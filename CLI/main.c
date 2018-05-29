@@ -3,10 +3,11 @@
 #include "./formatOutput.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define __populationSize__ 400
-#define iterateNum 2000
-#define __mutateRate__ 0.15
+#define iterateNum 4000
+#define __mutateRate__ 0.3
 
 int main( void ){
   Population population;
@@ -14,6 +15,8 @@ int main( void ){
   Result result;
   Gene child1, child2;
   int randomPicker1, randomPicker2;
+  int lastTimeSpan = 0;
+  int sameResult = 0;
   double coin;
   DescribeTable describeTable = scanFormatInput();
   population = newPopulation( __populationSize__, describeTable );
@@ -23,6 +26,8 @@ int main( void ){
   newGeneration.populationSize = __populationSize__;
   newGeneration.individuals =
     (Gene*)malloc( sizeof( Gene ) * __populationSize__ );
+
+  int beginTime = clock();
 
   for( int i = 0; i < iterateNum; i++ ){
 
@@ -43,11 +48,11 @@ int main( void ){
       );
 
       coin = ( rand() % 100000 ) / 100000.0;
-      if( coin > __mutateRate__ ){
+      if( coin >= __mutateRate__ ){
         mutate( child1 );
       }
       coin = ( rand() % 100000 ) / 100000.0;
-      if( coin > __mutateRate__ ){
+      if( coin >= __mutateRate__ ){
         mutate( child2 );
       }
 
@@ -57,7 +62,19 @@ int main( void ){
 
     result = decodePopulation( newGeneration, describeTable );
 
-    printf("makeSpan:%d\n", result.timeSpan );
+    if( lastTimeSpan == result.timeSpan ){
+      sameResult++;
+      if( sameResult >= ( describeTable.componentCount - 1 ) * describeTable.machineCount * 4 ){
+        if( i > 1800 ){
+          break;
+        }
+      }
+    } else {
+      lastTimeSpan = result.timeSpan;
+      sameResult = 0;
+    }
+
+    //printf( "makeSpan:%d\n", result.timeSpan );
 
     freeResult( result );
 
@@ -70,8 +87,11 @@ int main( void ){
 
   result = decodePopulation( population, describeTable );
 
+  int endTime = clock();
+
   printResult( result );
-  printf("makeSpan:%d\n", result.timeSpan );
+  printf( "Time Used: %.3fs\n", ( endTime - beginTime ) / 1000.0 );
+  printf( "End Time:%d\n", result.timeSpan );
 
   freePopulation( population );
   free( newGeneration.individuals );
