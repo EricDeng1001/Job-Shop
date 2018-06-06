@@ -1,3 +1,4 @@
+//作者:邓智豪
 #include "./formatOutput.h"
 #include <stdio.h>
 #include <stdlib.h>

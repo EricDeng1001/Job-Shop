@@ -1,3 +1,4 @@
+//作者:邓智豪
 #include "./decode.h"
 #include <string.h>
 #include <stdlib.h>
@@ -58,7 +59,10 @@ Result decodeGene( Gene* gene, DescribeTable table ){
 
     machines[job.requiredMachine] =
       result.schedule[componentIndex][jobIndex].endTime;
-    result.timeSpan = max( machines[job.requiredMachine], result.timeSpan );
+    result.timeSpan = max(
+      machines[job.requiredMachine],
+      result.timeSpan
+    );
 
     componentJobs[componentIndex]++;
   }

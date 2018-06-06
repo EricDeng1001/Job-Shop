@@ -1,3 +1,4 @@
+//作者:邓智豪
 #ifndef __GENE__H__
 #define __GENE__H__
 #include "./decribeTable.h"

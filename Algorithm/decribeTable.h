@@ -1,3 +1,4 @@
+//作者:邓智豪
 #ifndef __DESCRIBETABLE__H__
 #define __DESCRIBETABLE__H__
 

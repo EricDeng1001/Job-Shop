@@ -1,3 +1,4 @@
+//作者:黄云龙
 #include "./mutate.h"
 #include <stdlib.h>
 #include <time.h>

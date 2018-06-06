@@ -1,3 +1,4 @@
+//作者:邓智豪
 #ifndef __CROSSOVER__H__
 #define __CROSSOVER__H__
 #include "./gene.h"

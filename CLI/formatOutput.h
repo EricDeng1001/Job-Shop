@@ -1,3 +1,4 @@
+//作者:邓智豪
 #ifndef __FORMAT__OUTPUT__
 #define __FORMAT__OUTPUT__
 #include "../Algorithm/decode.h"

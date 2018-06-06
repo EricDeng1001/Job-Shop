@@ -1,3 +1,4 @@
+//作者:邓智豪
 #ifndef DECODE__H__
 #define DECODE__H__
 #include "./gene.h"
