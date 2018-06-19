@@ -1,5 +1,5 @@
 //作者:邓智豪
-#include "./gene.h"
+#include "gene.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

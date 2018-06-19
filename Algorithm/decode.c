@@ -1,5 +1,5 @@
 //作者:邓智豪
-#include "./decode.h"
+#include "decode.h"
 #include <string.h>
 #include <stdlib.h>
 #include <limits.h>

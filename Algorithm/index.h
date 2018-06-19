@@ -7,4 +7,6 @@
 #include "./mutate.h"
 #include "./decode.h"
 
+Result solveJSSP( DescribeTable theProblem );
+
 #endif
