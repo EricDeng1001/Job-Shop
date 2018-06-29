@@ -1,5 +1,5 @@
 #作者:邓智豪
-obj = main.c ./scanFormatInput.c ./formatOutput.c ../Algorithm/crossover.c ../Algorithm/describeTable.c ../Algorithm/gene.c ../Algorithm/mutate.c ../Algorithm/decode.c ../Algorithm/index.c
+obj = main.cpp ../Utils/scanFormatInput.cpp ../Utils/formatOutput.cpp ../Algorithm/crossover.cpp ../Algorithm/describeTable.cpp ../Algorithm/gene.cpp ../Algorithm/mutate.cpp ../Algorithm/decode.cpp ../Algorithm/index.cpp
 
 main: $(obj)
-	gcc -o main $(obj)
+	g++ -o main $(obj)

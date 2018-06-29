@@ -25,7 +25,6 @@ void printGene( Gene gene ){
 
 void printPopulation( Population population ){
   int populationSize = population.populationSize;
-  int geneLength = population.individuals[0].geneLength;
 
   for( int i = populationSize - 1; i >= 0; --i ){
     printGene( population.individuals[i] );
@@ -92,7 +91,6 @@ void sortGenes( Gene* genes, int size ){
 }
 
 void selectPopulation( Population p1, Population p2 ){
-  int geneLength = p1.individuals[0].geneLength;
   Gene* tmp =
     (Gene*)malloc( sizeof( Gene ) * ( p1.populationSize + p2.populationSize ) );
   //printPopulation( p1 );

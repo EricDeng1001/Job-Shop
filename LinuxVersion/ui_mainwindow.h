@@ -11,10 +11,13 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QScrollBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
@@ -29,8 +32,15 @@ public:
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
     QPushButton *openFileBtn;
+    QPushButton *selectOutputFIleBtn;
+    QPushButton *processBtb;
+    QLabel *processingIndicator;
+    QScrollBar *horizontalScrollBar;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
+    QLabel *label;
+    QLineEdit *lineEdit;
+    QPushButton *pushButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -39,7 +49,8 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(809, 670);
+        MainWindow->setEnabled(true);
+        MainWindow->resize(1112, 596);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setEnabled(true);
@@ -60,26 +71,62 @@ public:
 
         verticalLayout->addWidget(openFileBtn);
 
-        scrollArea = new QScrollArea(centralWidget);
-        scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-        scrollArea->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
-        scrollArea->setWidgetResizable(false);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 368, 218));
-        scrollArea->setWidget(scrollAreaWidgetContents);
+        selectOutputFIleBtn = new QPushButton(centralWidget);
+        selectOutputFIleBtn->setObjectName(QStringLiteral("selectOutputFIleBtn"));
 
-        verticalLayout->addWidget(scrollArea);
+        verticalLayout->addWidget(selectOutputFIleBtn);
 
 
         verticalLayout_2->addLayout(verticalLayout);
 
+        processBtb = new QPushButton(centralWidget);
+        processBtb->setObjectName(QStringLiteral("processBtb"));
+
+        verticalLayout_2->addWidget(processBtb);
+
+        processingIndicator = new QLabel(centralWidget);
+        processingIndicator->setObjectName(QStringLiteral("processingIndicator"));
+        processingIndicator->setEnabled(true);
+        processingIndicator->setAutoFillBackground(false);
+        processingIndicator->setIndent(0);
+
+        verticalLayout_2->addWidget(processingIndicator);
+
+        horizontalScrollBar = new QScrollBar(centralWidget);
+        horizontalScrollBar->setObjectName(QStringLiteral("horizontalScrollBar"));
+        horizontalScrollBar->setOrientation(Qt::Horizontal);
+
+        verticalLayout_2->addWidget(horizontalScrollBar);
+
+        scrollArea = new QScrollArea(centralWidget);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1092, 308));
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        verticalLayout_2->addWidget(scrollArea);
+
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
+
+        verticalLayout_2->addWidget(label);
+
+        lineEdit = new QLineEdit(centralWidget);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+
+        verticalLayout_2->addWidget(lineEdit);
+
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        verticalLayout_2->addWidget(pushButton);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 809, 41));
+        menuBar->setGeometry(QRect(0, 0, 1112, 23));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -95,8 +142,14 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Job Shop Scheduling", nullptr));
         openFileBtn->setText(QApplication::translate("MainWindow", "Open File", nullptr));
+        selectOutputFIleBtn->setText(QApplication::translate("MainWindow", "Select Output File", nullptr));
+        processBtb->setText(QApplication::translate("MainWindow", "Process", nullptr));
+        processingIndicator->setText(QString());
+        label->setText(QApplication::translate("MainWindow", "\346\243\200\344\277\256", nullptr));
+        lineEdit->setText(QString());
+        pushButton->setText(QApplication::translate("MainWindow", "Confirm", nullptr));
     } // retranslateUi
 
 };

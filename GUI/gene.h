@@ -26,5 +26,5 @@ void printPopulation( Population population );
 
 void printGene( Gene gene );
 
-extern Gene bestGene;
+
 #endif

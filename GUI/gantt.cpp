@@ -75,6 +75,9 @@ void Gantt::pause() {
     this->timer.stop();
 }
 
+int Gantt::getTime(){
+    return this->time;
+}
 void Gantt::timerTimeout() {
 
 }
@@ -84,8 +87,8 @@ static bool itemLessThan(QList<int> &v1,QList<int> &v2) {
 }
 
 void Gantt::mousePressEvent(QMouseEvent *ev) {
-    int x=ev->x(),
-        y=ev->y();
+    int x = ev->x(),
+        y = ev->y();
     int target_machine = y / LINE_HEIGHT;
     for (QList<int> item : this->items) {
         int machine = item[0],
@@ -95,7 +98,7 @@ void Gantt::mousePressEvent(QMouseEvent *ev) {
         ;
         int x0 = qFloor(startTime * this->scale);
         int x1 = qFloor(endTime * this->scale);
-        if (x>= x0 && x<= x1 && target_machine==machine) {
+        if (x>= x0 && x<= x1 && target_machine == machine) {
             this->currentSelectedItem = product;
             this->repaint();
             return;
@@ -125,13 +128,15 @@ void Gantt::paintEvent(QPaintEvent *event) {
         int y = machine * LINE_HEIGHT;
         painter.setBrush(QBrush(COLOR[(product-1) % 17]));
         QRect rect;
-        if(product == this->currentSelectedItem) {
-            rect = QRect(x0+1,y+1,x1-x0-2,LINE_HEIGHT-2);
+        if( product == this->currentSelectedItem ){
+            rect = QRect( x0 + 1, y + 1, x1 - x0 - 2, LINE_HEIGHT - 2 );
             painter.setPen(edgePen);
-        } else rect = QRect(x0,y,x1-x0,LINE_HEIGHT);
+        } else {
+            rect = QRect( x0 , y , x1 - x0 , LINE_HEIGHT );
+        }
         painter.drawRect(rect);
-        painter.setPen( QColor("#ffffff") );
+        painter.setPen( QColor("#eeeeee") );
         painter.drawText(rect,Qt::AlignCenter,QString("%1").arg(product));
-        painter.setPen(QColor(0,0,0,0));
+        painter.setPen( QColor(0,0,0,0) );
     }
 }

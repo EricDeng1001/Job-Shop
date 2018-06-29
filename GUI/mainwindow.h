@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QString>
+#include <QThread>
 #include "gantt.h"
 #include "../Algorithm/index.h"
 
@@ -18,24 +20,34 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
-
-    void on_horizontalSlider_sliderMoved(int position);
 
     void on_openFileBtn_clicked();
 
     bool getFileName();
 
-    void excute();
-
     void drawGannt();
 
-    void startAnimation();
+    //void startAnimation();
+
+    void on_selectOutputFIleBtn_clicked();
+
+    void on_processBtb_clicked();
+
+    void on_horizontalScrollBar_sliderMoved(int position);
+
+    void on_lineEdit_textEdited(const QString &arg1);
+
+    void on_lineEdit_editingFinished();
+
+    void play();
+    void on_pushButton_clicked();
+    void onFinish();
 private:
     Ui::MainWindow *ui;
     Gantt *gantt;
-    DescribeTable *theProblem;
-    Result *theResult;
+    QString filename;
+    QThread* excuter;
+    clock_t startTime;
 };
 
 #endif // MAINWINDOW_H

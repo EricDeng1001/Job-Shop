@@ -52,11 +52,29 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../GUI/main.cpp \
 		../GUI/mainwindow.cpp \
-		../GUI/gantt.cpp moc_mainwindow.cpp \
+		../GUI/gantt.cpp \
+		../Algorithm/describeTable.cpp \
+		../Algorithm/gene.cpp \
+		../Algorithm/index.cpp \
+		../Algorithm/mutate.cpp \
+		../Utils/formatOutput.cpp \
+		../Utils/scanFormatInput.cpp \
+		../Algorithm/crossover.cpp \
+		../Algorithm/decode.cpp \
+		../Utils/repair.cpp moc_mainwindow.cpp \
 		moc_gantt.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		gantt.o \
+		describeTable.o \
+		gene.o \
+		index.o \
+		mutate.o \
+		formatOutput.o \
+		scanFormatInput.o \
+		crossover.o \
+		decode.o \
+		repair.o \
 		moc_mainwindow.o \
 		moc_gantt.o
 DIST          = /home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/spec_pre.prf \
@@ -228,6 +246,7 @@ DIST          = /home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/qt_config.prf \
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/spec_post.prf \
+		../GUI/.qmake.stash \
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/toolchain.prf \
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/default_pre.prf \
@@ -248,9 +267,27 @@ DIST          = /home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/yacc.prf \
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/lex.prf \
 		../GUI/GUI.pro ../GUI/mainwindow.h \
-		../GUI/gantt.h ../GUI/main.cpp \
+		../GUI/gantt.h \
+		../Utils/formatOutput.h \
+		../Utils/scanFormatInput.h \
+		../Algorithm/crossover.h \
+		../Algorithm/decode.h \
+		../Algorithm/decribeTable.h \
+		../Algorithm/gene.h \
+		../Algorithm/index.h \
+		../Algorithm/mutate.h \
+		../Utils/repair.h ../GUI/main.cpp \
 		../GUI/mainwindow.cpp \
-		../GUI/gantt.cpp
+		../GUI/gantt.cpp \
+		../Algorithm/describeTable.cpp \
+		../Algorithm/gene.cpp \
+		../Algorithm/index.cpp \
+		../Algorithm/mutate.cpp \
+		../Utils/formatOutput.cpp \
+		../Utils/scanFormatInput.cpp \
+		../Algorithm/crossover.cpp \
+		../Algorithm/decode.cpp \
+		../Utils/repair.cpp
 QMAKE_TARGET  = GUI
 DESTDIR       = 
 TARGET        = GUI
@@ -431,6 +468,7 @@ Makefile: ../GUI/GUI.pro /home/antinus/Qt/5.11.0/gcc_64/mkspecs/linux-g++/qmake.
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/qt_config.prf \
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/toolchain.prf \
 		/home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/default_pre.prf \
@@ -624,6 +662,7 @@ Makefile: ../GUI/GUI.pro /home/antinus/Qt/5.11.0/gcc_64/mkspecs/linux-g++/qmake.
 /home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/qt_config.prf:
 /home/antinus/Qt/5.11.0/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/toolchain.prf:
 /home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/default_pre.prf:
@@ -662,8 +701,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /home/antinus/Qt/5.11.0/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../GUI/mainwindow.h ../GUI/gantt.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../GUI/main.cpp ../GUI/mainwindow.cpp ../GUI/gantt.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../GUI/mainwindow.h ../GUI/gantt.h ../Utils/formatOutput.h ../Utils/scanFormatInput.h ../Algorithm/crossover.h ../Algorithm/decode.h ../Algorithm/decribeTable.h ../Algorithm/gene.h ../Algorithm/index.h ../Algorithm/mutate.h ../Utils/repair.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../GUI/main.cpp ../GUI/mainwindow.cpp ../GUI/gantt.cpp ../Algorithm/describeTable.cpp ../Algorithm/gene.cpp ../Algorithm/index.cpp ../Algorithm/mutate.cpp ../Utils/formatOutput.cpp ../Utils/scanFormatInput.cpp ../Algorithm/crossover.cpp ../Algorithm/decode.cpp ../Utils/repair.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../GUI/mainwindow.ui $(DISTDIR)/
 
 
@@ -804,11 +843,20 @@ moc_mainwindow.cpp: /home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QMainWindow
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtGui/qicon.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/QString \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/QThread \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qthread.h \
 		../GUI/gantt.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QWidget \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/QTimer \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qtimer.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qbasictimer.h \
+		../Algorithm/index.h \
+		../Algorithm/gene.h \
+		../Algorithm/decribeTable.h \
+		../Algorithm/crossover.h \
+		../Algorithm/mutate.h \
+		../Algorithm/decode.h \
 		../GUI/mainwindow.h \
 		moc_predefs.h \
 		/home/antinus/Qt/5.11.0/gcc_64/bin/moc
@@ -1051,11 +1099,20 @@ main.o: ../GUI/main.cpp ../GUI/mainwindow.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtGui/qicon.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/QString \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/QThread \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qthread.h \
 		../GUI/gantt.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QWidget \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/QTimer \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qtimer.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qbasictimer.h \
+		../Algorithm/index.h \
+		../Algorithm/gene.h \
+		../Algorithm/decribeTable.h \
+		../Algorithm/crossover.h \
+		../Algorithm/mutate.h \
+		../Algorithm/decode.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QApplication \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qapplication.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1171,12 +1228,72 @@ mainwindow.o: ../GUI/mainwindow.cpp ../GUI/mainwindow.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtGui/qicon.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/QString \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/QThread \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qthread.h \
 		../GUI/gantt.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QWidget \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/QTimer \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qtimer.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qbasictimer.h \
-		ui_mainwindow.h
+		../Algorithm/index.h \
+		../Algorithm/gene.h \
+		../Algorithm/decribeTable.h \
+		../Algorithm/crossover.h \
+		../Algorithm/mutate.h \
+		../Algorithm/decode.h \
+		ui_mainwindow.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/QVariant \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QApplication \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qapplication.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qeventloop.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtGui/qguiapplication.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtGui/qinputmethod.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QLabel \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qlabel.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qframe.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QLineEdit \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qlineedit.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtGui/qtextcursor.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtGui/qtextformat.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtGui/qpen.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtGui/qtextoption.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QMenuBar \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qmenu.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qaction.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QPushButton \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QScrollArea \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QScrollBar \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qscrollbar.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QStatusBar \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QToolBar \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qtoolbar.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qlayout.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../Utils/scanFormatInput.h \
+		../Utils/formatOutput.h \
+		../Utils/repair.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QFileDialog \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qfiledialog.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qdir.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/qfileinfo.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qdialog.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/QMessageBox \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtWidgets/qmessagebox.h \
+		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/QFile
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../GUI/mainwindow.cpp
 
 gantt.o: ../GUI/gantt.cpp ../GUI/gantt.h \
@@ -1297,6 +1414,53 @@ gantt.o: ../GUI/gantt.cpp ../GUI/gantt.h \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtCore/QByteArray \
 		/home/antinus/Qt/5.11.0/gcc_64/include/QtGui/QMouseEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gantt.o ../GUI/gantt.cpp
+
+describeTable.o: ../Algorithm/describeTable.cpp ../Algorithm/decribeTable.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o describeTable.o ../Algorithm/describeTable.cpp
+
+gene.o: ../Algorithm/gene.cpp ../Algorithm/gene.h \
+		../Algorithm/decribeTable.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gene.o ../Algorithm/gene.cpp
+
+index.o: ../Algorithm/index.cpp ../Algorithm/index.h \
+		../Algorithm/gene.h \
+		../Algorithm/decribeTable.h \
+		../Algorithm/crossover.h \
+		../Algorithm/mutate.h \
+		../Algorithm/decode.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o index.o ../Algorithm/index.cpp
+
+mutate.o: ../Algorithm/mutate.cpp ../Algorithm/mutate.h \
+		../Algorithm/gene.h \
+		../Algorithm/decribeTable.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mutate.o ../Algorithm/mutate.cpp
+
+formatOutput.o: ../Utils/formatOutput.cpp ../Utils/formatOutput.h \
+		../Algorithm/decode.h \
+		../Algorithm/gene.h \
+		../Algorithm/decribeTable.h \
+		../Utils/repair.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formatOutput.o ../Utils/formatOutput.cpp
+
+scanFormatInput.o: ../Utils/scanFormatInput.cpp ../Utils/scanFormatInput.h \
+		../Algorithm/decribeTable.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o scanFormatInput.o ../Utils/scanFormatInput.cpp
+
+crossover.o: ../Algorithm/crossover.cpp ../Algorithm/crossover.h \
+		../Algorithm/gene.h \
+		../Algorithm/decribeTable.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o crossover.o ../Algorithm/crossover.cpp
+
+decode.o: ../Algorithm/decode.cpp ../Algorithm/decode.h \
+		../Algorithm/gene.h \
+		../Algorithm/decribeTable.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o decode.o ../Algorithm/decode.cpp
+
+repair.o: ../Utils/repair.cpp ../Utils/repair.h \
+		../Algorithm/decode.h \
+		../Algorithm/gene.h \
+		../Algorithm/decribeTable.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o repair.o ../Utils/repair.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

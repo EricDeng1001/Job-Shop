@@ -2,16 +2,19 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>809</width>
-    <height>670</height>
+    <width>1112</width>
+    <height>596</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Job Shop Scheduling</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="enabled">
@@ -34,32 +37,81 @@
        </widget>
       </item>
       <item>
-       <widget class="QScrollArea" name="scrollArea">
-        <property name="verticalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOn</enum>
+       <widget class="QPushButton" name="selectOutputFIleBtn">
+        <property name="text">
+         <string>Select Output File</string>
         </property>
-        <property name="horizontalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOn</enum>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustToContents</enum>
-        </property>
-        <property name="widgetResizable">
-         <bool>false</bool>
-        </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>368</width>
-           <height>218</height>
-          </rect>
-         </property>
-        </widget>
        </widget>
       </item>
      </layout>
+    </item>
+    <item>
+     <widget class="QPushButton" name="processBtb">
+      <property name="text">
+       <string>Process</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="processingIndicator">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="indent">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QScrollBar" name="horizontalScrollBar">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>1092</width>
+         <height>308</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>检修</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Confirm</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -68,8 +120,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>809</width>
-     <height>41</height>
+     <width>1112</width>
+     <height>23</height>
     </rect>
    </property>
   </widget>

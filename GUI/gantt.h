@@ -12,13 +12,23 @@ public:
     Gantt(QWidget *parent,QString text,double scale);
     //The broken machine period marked with productId == 0
     void addItem(int machine,int product,int piece,int startTime,int endTime);
+
     void clearItems();
+
     void rescale(double scale);
+
     void play(int speed);
-    int time = 0;
+
+    void setTime(int time);
+
+    int getTime();
+
     void stop();
+
     void pause();
+
     static Gantt loadFromStandardOutput(QString text);
+
 protected:
     void paintEvent(QPaintEvent *event)  override;
     void mousePressEvent(QMouseEvent *ev) override;
@@ -26,7 +36,7 @@ private:
     QList<QList<int>> items;
     bool items_sorted = false;
     int currentSelectedItem = 0;
-
+    int time = 0;
     int product_count;
     int machine_count;
     int speed;
