@@ -1,3 +1,4 @@
+// 作者: 邓智豪
 #ifndef REPAIR_H
 #define REPAIR_H
 #include "../Algorithm/decode.h"

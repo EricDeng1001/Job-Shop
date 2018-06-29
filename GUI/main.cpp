@@ -1,3 +1,4 @@
+//作者:黄云龙
 #include "mainwindow.h"
 #include <QApplication>
 

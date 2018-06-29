@@ -10,7 +10,7 @@ typedef struct {
   int timeSpan;
 } Job;
 
-typedef struct{
+typedef struct {
   Job* jobs;
   int jobCount;
 } Component;

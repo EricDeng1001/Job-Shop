@@ -1,3 +1,4 @@
+//作者:邓智豪
 #ifndef __GANTT_H__
 #define __GANTT_H__
 

@@ -15,6 +15,7 @@ void printDescribeTable( DescribeTable table ){
   int componentCount = table.componentCount;
   Component* components = table.components;
   int jobCount;
+  // 格式化输出
   printf( "machines:%d\n", machineCount );
   printf( "componnets:\n" );
   for( int i = 0; i < componentCount; i++ ){

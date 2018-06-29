@@ -9,6 +9,7 @@ Gene mutate( Gene origin ){
   int i = rand() % geneLength;
   int j = rand() % geneLength;
 
+  // 随机选择两个位置交换
   tmp = origin.genes[j];
   origin.genes[j] = origin.genes[i];
   origin.genes[i] = tmp;

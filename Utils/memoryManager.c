@@ -1,3 +1,4 @@
+//作者:谭典
 #include "memoryManager.h"
 
 struct memoryCollectorNode;

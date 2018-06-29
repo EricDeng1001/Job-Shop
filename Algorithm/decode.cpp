@@ -39,6 +39,7 @@ Result decodeGene( Gene* gene, DescribeTable table ){
   Job job;
   int lastIdleTime;
 
+  // 贪婪决策,只考虑当前最优
   for( int i = 0; i < geneLength; i++ ){
     componentIndex = gene->genes[i];
     jobIndex = componentJobs[componentIndex];
@@ -48,6 +49,7 @@ Result decodeGene( Gene* gene, DescribeTable table ){
     if( jobIndex == 0 ){
       result.schedule[componentIndex][0].startTime = lastIdleTime;
     } else {
+      // 刚好能放下就放入
       result.schedule[componentIndex][jobIndex].startTime =
         max(
           lastIdleTime,
@@ -55,6 +57,7 @@ Result decodeGene( Gene* gene, DescribeTable table ){
         );
     }
 
+    // 保证不冲突
     result.schedule[componentIndex][jobIndex].endTime =
       result.schedule[componentIndex][jobIndex].startTime + job.timeSpan;
     result.schedule[componentIndex][jobIndex].machineIndex =
@@ -62,6 +65,7 @@ Result decodeGene( Gene* gene, DescribeTable table ){
 
     machines[job.requiredMachine] =
       result.schedule[componentIndex][jobIndex].endTime;
+    // 计算现在的最大加工时间
     result.timeSpan = max(
       machines[job.requiredMachine],
       result.timeSpan
@@ -78,6 +82,7 @@ Result decodeGene( Gene* gene, DescribeTable table ){
   return result;
 }
 
+// 对每个基因都解码一次,并且选出最优的返回
 Result decodePopulation( Population population, DescribeTable table ){
   Result tmp;
   Result best = decodeGene( &population.individuals[0], table );

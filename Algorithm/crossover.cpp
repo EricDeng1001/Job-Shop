@@ -45,6 +45,7 @@ void push( OrderList* l, ComponentIndex gene, int order ){
   l->tail = node;
 }
 
+// 切分基因组, 准备插入
 OrderList slice( OrderList origin, int begin, int end ){
   OrderList result = createOrderList();
   int i;
@@ -59,6 +60,7 @@ OrderList slice( OrderList origin, int begin, int end ){
   return result;
 }
 
+// 链接基因组
 OrderList concat( OrderList left, OrderList middle, OrderList right ){
   middle.tail->next = right.head->next;
   left.tail->next = middle.head->next;
@@ -67,6 +69,7 @@ OrderList concat( OrderList left, OrderList middle, OrderList right ){
   return left;
 }
 
+// 转换为基因
 Gene toGene( OrderList l, int geneLength ){
   Gene result;
   OrderListNode* tmp = l.head->next;
@@ -80,6 +83,7 @@ Gene toGene( OrderList l, int geneLength ){
   return result;
 }
 
+// 去重
 void findAndRemove( OrderList* l, OrderListNode* toCompare ){
   OrderListNode* tmp = l->head;
   OrderListNode* toFree;
@@ -103,6 +107,7 @@ void findAndRemove( OrderList* l, OrderListNode* toCompare ){
   }
 }
 
+// 对外暴露的函数,交叉两个基因
 Gene crossover( Gene p1, Gene p2, DescribeTable table ){
   const int geneLength = p1.geneLength;
   const int componentCount = table.componentCount;
@@ -118,6 +123,7 @@ Gene crossover( Gene p1, Gene p2, DescribeTable table ){
   int fragmentEnd = fragmentBegin + 1 + rand() % ( geneLength - fragmentBegin );
   int insertPort = rand() % geneLength;
 
+  // 先把基因转换为有序链表,便于计算
   memset( componentCountTable, 0, sizeof( int ) * componentCount );
   for( int i = 0; i < geneLength; i++ ){
     // ( gene, order )
@@ -130,6 +136,7 @@ Gene crossover( Gene p1, Gene p2, DescribeTable table ){
     componentCountTable[p2.genes[i]]++;
   }
 
+  // 切割两个基因
   fragment = slice( l1, fragmentBegin, fragmentEnd );
   leftChild = slice( l2, 0, insertPort );
   rightChild = slice( l2, insertPort, geneLength );
@@ -141,6 +148,7 @@ Gene crossover( Gene p1, Gene p2, DescribeTable table ){
     tmp = tmp->next;
   }
 
+  // 链接,然后直接转回基因形式
   result = toGene( concat( leftChild, fragment, rightChild ), geneLength );
 
   freeOrderList( l1 );

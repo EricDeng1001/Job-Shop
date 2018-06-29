@@ -1,3 +1,4 @@
+// 作者: 邓智豪
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -13,41 +14,35 @@ class MainWindow;
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+  explicit MainWindow(QWidget *parent = 0);
+  ~MainWindow();
 
 private slots:
 
-    void on_openFileBtn_clicked();
+  void on_openFileBtn_clicked();
 
-    bool getFileName();
+  bool getFileName();
 
-    void drawGannt();
+  void drawGannt();
 
-    //void startAnimation();
+  void on_selectOutputFIleBtn_clicked();
 
-    void on_selectOutputFIleBtn_clicked();
+  void on_processBtb_clicked();
 
-    void on_processBtb_clicked();
+  void play();
 
-    void on_horizontalScrollBar_sliderMoved(int position);
+  void on_pushButton_clicked();
 
-    void on_lineEdit_textEdited(const QString &arg1);
-
-    void on_lineEdit_editingFinished();
-
-    void play();
-    void on_pushButton_clicked();
-    void onFinish();
+  void onFinish();
 private:
-    Ui::MainWindow *ui;
-    Gantt *gantt;
-    QString filename;
-    QThread* excuter;
-    clock_t startTime;
+  Ui::MainWindow *ui;
+  Gantt *gantt;
+  QString filename;
+  QThread* excuter;
+  clock_t startTime;
 };
 
 #endif // MAINWINDOW_H

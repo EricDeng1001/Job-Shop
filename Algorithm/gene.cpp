@@ -34,6 +34,7 @@ void printPopulation( Population population ){
 
 }
 
+// 根据问题描述生成指定大小的新种群
 Population newPopulation( int populationSize, DescribeTable table ){
   srand( time( NULL ) );
   const int componentCount = table.componentCount;
@@ -102,8 +103,10 @@ void selectPopulation( Population p1, Population p2 ){
     tmp[i + p1.populationSize] = p2.individuals[i];
   }
 
+  // 按照适应度排序
   sortGenes( tmp, p1.populationSize + p2.populationSize );
 
+  // 选出最优的
   for( int i = 0; i < p1.populationSize; i++ ){
     p1.individuals[i] = tmp[i];
   }
