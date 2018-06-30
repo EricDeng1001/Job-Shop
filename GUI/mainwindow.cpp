@@ -44,7 +44,7 @@ void fillGantt( Gantt* gantt ){
   // 二重循环遍历安排表
   for( int j = 0; j < result.componentCount; j++ ){
     for( int k = 0; k < result.machineCount; k++ ){
-    if(  result.schedule[j][k].startTime == -1 ){ //第j个工件结束
+    if( result.schedule[j][k].startTime == -1 ){ //第j个工件结束
       break;
     }
     if(  result.schedule[j][k].machineIndex == i ){ //第j个工件的第k个工序

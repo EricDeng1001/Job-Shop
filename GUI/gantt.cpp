@@ -1,3 +1,4 @@
+// 作者:谭典
 #include "gantt.h"
 #include <QPen>
 #include <QPainter>
